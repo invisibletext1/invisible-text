@@ -1,0 +1,693 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Text Invisible Tool – Simple Guide for All Users</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.8;
+            color: #213448;
+            background: linear-gradient(135deg, #EAE0CF 0%, #94B4C1 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            background: #213448;
+            color: #EAE0CF;
+            padding: 60px 20px;
+            text-align: center;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            margin-bottom: 40px;
+        }
+
+        header h1 {
+            font-size: 2.8em;
+            margin-bottom: 15px;
+            font-weight: 700;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+
+        header p {
+            font-size: 1.2em;
+            opacity: 0.9;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .content-section {
+            background: white;
+            border-radius: 15px;
+            padding: 40px;
+            margin-bottom: 30px;
+            box-shadow: 0 8px 30px rgba(33, 52, 72, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .content-section:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 40px rgba(33, 52, 72, 0.15);
+        }
+
+        .section-image {
+            width: 100%;
+            max-width: 600px;
+            height: 300px;
+            margin: 20px auto;
+            display: block;
+            border-radius: 10px;
+            object-fit: cover;
+            box-shadow: 0 4px 15px rgba(33, 52, 72, 0.2);
+        }
+
+        h2 {
+            color: #213448;
+            font-size: 2em;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 3px solid #94B4C1;
+        }
+
+        h3 {
+            color: #213448;
+            font-size: 1.5em;
+            margin: 25px 0 15px;
+        }
+
+        p {
+            margin-bottom: 20px;
+            font-size: 1.1em;
+            color: #555;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: linear-gradient(135deg, #213448 0%, #94B4C1 100%);
+            color: white;
+            padding: 15px 40px;
+            text-decoration: none;
+            border-radius: 50px;
+            font-size: 1.1em;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(33, 52, 72, 0.3);
+            margin: 20px 0;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 25px rgba(33, 52, 72, 0.4);
+        }
+
+        .button-container {
+            text-align: center;
+            margin: 40px 0;
+        }
+
+        /* Tool Styles */
+        .tool-container {
+            background: linear-gradient(135deg, #213448 0%, #94B4C1 100%);
+            padding: 50px 40px;
+            border-radius: 15px;
+            box-shadow: 0 8px 30px rgba(33, 52, 72, 0.2);
+        }
+
+        .tool-title {
+            color: #EAE0CF;
+            text-align: center;
+            font-size: 2.2em;
+            margin-bottom: 30px;
+            border-bottom: 3px solid #EAE0CF;
+            padding-bottom: 15px;
+        }
+
+        .tool-section {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+
+        .tool-section h3 {
+            color: #213448;
+            margin-top: 0;
+        }
+
+        textarea {
+            width: 100%;
+            min-height: 150px;
+            padding: 15px;
+            border: 2px solid #94B4C1;
+            border-radius: 8px;
+            font-size: 1em;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            resize: vertical;
+            transition: border-color 0.3s ease;
+        }
+
+        textarea:focus {
+            outline: none;
+            border-color: #213448;
+        }
+
+        .tool-buttons {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .tool-btn {
+            padding: 12px 30px;
+            border: none;
+            border-radius: 50px;
+            font-size: 1em;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(33, 52, 72, 0.2);
+        }
+
+        .btn-convert {
+            background: #213448;
+            color: white;
+        }
+
+        .btn-convert:hover {
+            background: #94B4C1;
+            transform: translateY(-3px);
+        }
+
+        .btn-copy {
+            background: #94B4C1;
+            color: white;
+        }
+
+        .btn-copy:hover {
+            background: #213448;
+            transform: translateY(-3px);
+        }
+
+        .btn-clear {
+            background: #EAE0CF;
+            color: #213448;
+        }
+
+        .btn-clear:hover {
+            background: #213448;
+            color: white;
+            transform: translateY(-3px);
+        }
+
+        .status-message {
+            text-align: center;
+            margin-top: 15px;
+            padding: 10px;
+            border-radius: 8px;
+            font-weight: 600;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .status-message.show {
+            opacity: 1;
+        }
+
+        .status-success {
+            background: #d4edda;
+            color: #155724;
+        }
+
+        .status-error {
+            background: #f8d7da;
+            color: #721c24;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 25px 0;
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+        }
+
+        th, td {
+            padding: 15px;
+            text-align: left;
+            border-bottom: 1px solid #EAE0CF;
+        }
+
+        th {
+            background: #213448;
+            color: white;
+            font-weight: 600;
+            text-transform: uppercase;
+            font-size: 0.9em;
+            letter-spacing: 0.5px;
+        }
+
+        tr:hover {
+            background: #EAE0CF;
+            transition: background 0.3s ease;
+        }
+
+        .comparison-table {
+            margin: 30px 0;
+        }
+
+        .highlight-box {
+            background: linear-gradient(135deg, #EAE0CF 0%, #94B4C1 20%);
+            border-left: 5px solid #213448;
+            padding: 25px;
+            margin: 25px 0;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(33, 52, 72, 0.1);
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+            margin: 30px 0;
+        }
+
+        .feature-card {
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(33, 52, 72, 0.1);
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .feature-card:hover {
+            border-color: #94B4C1;
+            transform: translateY(-5px);
+        }
+
+        .feature-icon {
+            font-size: 3em;
+            margin-bottom: 15px;
+            color: #213448;
+        }
+
+        footer {
+            background: #213448;
+            color: #EAE0CF;
+            text-align: center;
+            padding: 30px 20px;
+            margin-top: 50px;
+        }
+
+        footer p {
+            color: #EAE0CF;
+            margin: 10px 0;
+        }
+
+        .intro-section {
+            text-align: center;
+            padding: 40px 0;
+        }
+
+        ul {
+            list-style-position: inside;
+            margin: 20px 0;
+        }
+
+        li {
+            margin: 10px 0;
+            padding-left: 10px;
+            color: #555;
+        }
+
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2em;
+            }
+
+            .content-section {
+                padding: 25px;
+            }
+
+            h2 {
+                font-size: 1.6em;
+            }
+
+            .feature-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .tool-buttons {
+                flex-direction: column;
+            }
+
+            .tool-btn {
+                width: 100%;
+            }
+        }
+
+        .scroll-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: #213448;
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(33, 52, 72, 0.3);
+            transition: all 0.3s ease;
+            opacity: 0;
+            visibility: hidden;
+            font-size: 1.5em;
+            font-weight: bold;
+        }
+
+        .scroll-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .scroll-to-top:hover {
+            background: #94B4C1;
+            transform: translateY(-5px);
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>Text Invisible Tool – Simple Guide for All Users</h1>
+            <p>Make text invisible without deleting it - Easy, fast, and no coding required</p>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="intro-section">
+            <div class="content-section">
+                <svg class="section-image" viewBox="0 0 600 300" xmlns="http://www.w3.org/2000/svg">
+                    <defs>
+                        <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" style="stop-color:#213448;stop-opacity:1" />
+                            <stop offset="100%" style="stop-color:#94B4C1;stop-opacity:1" />
+                        </linearGradient>
+                    </defs>
+                    <rect width="600" height="300" fill="#EAE0CF"/>
+                    <circle cx="300" cy="150" r="80" fill="url(#grad1)" opacity="0.3"/>
+                    <text x="300" y="120" font-size="48" fill="#213448" text-anchor="middle" font-weight="bold">ABC</text>
+                    <text x="300" y="180" font-size="48" fill="#213448" text-anchor="middle" font-weight="bold" opacity="0.2">XYZ</text>
+                    <path d="M 200 250 L 400 250" stroke="#94B4C1" stroke-width="3" stroke-dasharray="10,5"/>
+                </svg>
+                <p style="font-size: 1.2em; text-align: center;">A Text Invisible Tool is an easy online solution that allows users to make text invisible without deleting it. The text remains in place but cannot be seen on the screen. This tool is mainly used by people who want clean designs, hidden spacing, or invisible characters without using any CSS or technical methods.</p>
+                <p style="text-align: center;">The tool is designed to be fast and user-friendly. Anyone can use it by simply entering text, converting it, and copying the invisible result. No coding skills or software installation is required.</p>
+                
+                <div class="button-container">
+                    <a href="https://textinvisible.org/" class="cta-button">text invisible</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Interactive Tool -->
+        <div class="content-section">
+            <div class="tool-container">
+                <h2 class="tool-title">🔧 Try the Text Invisible Tool</h2>
+                
+                <div class="tool-section">
+                    <h3>📝 Enter Your Text</h3>
+                    <textarea id="inputText" placeholder="Type or paste your text here..."></textarea>
+                </div>
+
+                <div class="tool-section">
+                    <h3>👻 Invisible Text Output</h3>
+                    <textarea id="outputText" placeholder="Your invisible text will appear here..." readonly></textarea>
+                    
+                    <div class="tool-buttons">
+                        <button class="tool-btn btn-convert" onclick="convertToInvisible()">✨ Make Invisible</button>
+                        <button class="tool-btn btn-copy" onclick="copyToClipboard()">📋 Copy Output</button>
+                        <button class="tool-btn btn-clear" onclick="clearAll()">🗑️ Clear All</button>
+                    </div>
+                    
+                    <div id="statusMessage" class="status-message"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="content-section">
+            <h2>What Does Invisible Text Mean?</h2>
+            <svg class="section-image" viewBox="0 0 600 300" xmlns="http://www.w3.org/2000/svg">
+                <rect width="600" height="300" fill="#EAE0CF"/>
+                <rect x="50" y="50" width="500" height="200" fill="white" stroke="#213448" stroke-width="3" rx="10"/>
+                <text x="300" y="100" font-size="24" fill="#213448" text-anchor="middle" font-weight="bold">Visible Text</text>
+                <rect x="50" y="130" width="500" height="2" fill="#94B4C1"/>
+                <text x="300" y="180" font-size="24" fill="#213448" text-anchor="middle" font-weight="bold" opacity="0.15">Hidden Text</text>
+                <path d="M 100 220 Q 300 200 500 220" stroke="#94B4C1" stroke-width="2" fill="none" stroke-dasharray="5,5"/>
+            </svg>
+            <p>Invisible text refers to text that exists but is not visible to viewers. Although it cannot be seen, it still takes space and can be used for layout structure or accessibility purposes. This type of text is often used during design testing, formatting experiments, or when hidden text is needed for usability reasons.</p>
+            <div class="highlight-box">
+                <p style="margin: 0; font-weight: 600;"><strong>Important:</strong> Invisible text should always be used in a fair and transparent way. It is not meant to deceive users or search engines.</p>
+            </div>
+        </div>
+
+        <div class="content-section">
+            <h2>How This Text Invisible Tool Works</h2>
+            <svg class="section-image" viewBox="0 0 600 300" xmlns="http://www.w3.org/2000/svg">
+                <rect width="600" height="300" fill="#EAE0CF"/>
+                <rect x="50" y="100" width="150" height="100" fill="#213448" rx="10"/>
+                <text x="125" y="140" font-size="16" fill="white" text-anchor="middle">Input</text>
+                <text x="125" y="165" font-size="14" fill="#EAE0CF" text-anchor="middle">Your Text</text>
+                
+                <path d="M 200 150 L 250 150" stroke="#94B4C1" stroke-width="4" marker-end="url(#arrowhead)"/>
+                <circle cx="225" cy="150" r="15" fill="#94B4C1"/>
+                <text x="225" y="155" font-size="16" fill="white" text-anchor="middle" font-weight="bold">⚡</text>
+                
+                <rect x="250" y="100" width="100" height="100" fill="#94B4C1" rx="10"/>
+                <text x="300" y="140" font-size="14" fill="white" text-anchor="middle">Convert</text>
+                <text x="300" y="165" font-size="12" fill="white" text-anchor="middle">Process</text>
+                
+                <path d="M 350 150 L 400 150" stroke="#94B4C1" stroke-width="4"/>
+                <circle cx="375" cy="150" r="15" fill="#213448"/>
+                <text x="375" y="155" font-size="16" fill="white" text-anchor="middle" font-weight="bold">✓</text>
+                
+                <rect x="400" y="100" width="150" height="100" fill="#213448" rx="10"/>
+                <text x="475" y="140" font-size="16" fill="white" text-anchor="middle">Output</text>
+                <text x="475" y="165" font-size="14" fill="#EAE0CF" text-anchor="middle">Invisible Text</text>
+                
+                <defs>
+                    <marker id="arrowhead" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+                        <polygon points="0 0, 10 3, 0 6" fill="#94B4C1"/>
+                    </marker>
+                </defs>
+            </svg>
+            <p>Using this tool is very straightforward. You type or paste your text into the input area, and the tool converts it into an invisible form. Once converted, the text appears empty, but it still contains hidden characters. You can then copy and paste this invisible text wherever needed.</p>
+            <p>The process is instant and works smoothly on desktop and mobile browsers.</p>
+        </div>
+
+        <div class="content-section">
+            <h2>Is Any Coding or CSS Required?</h2>
+            <svg class="section-image" viewBox="0 0 600 300" xmlns="http://www.w3.org/2000/svg">
+                <rect width="600" height="300" fill="#EAE0CF"/>
+                <rect x="100" y="80" width="180" height="140" fill="white" stroke="#213448" stroke-width="2" rx="5"/>
+                <text x="190" y="110" font-size="14" fill="#213448" text-anchor="middle" font-weight="bold">With Code</text>
+                <text x="190" y="140" font-size="11" fill="#666" text-anchor="middle" font-family="monospace">&lt;style&gt;</text>
+                <text x="190" y="160" font-size="11" fill="#666" text-anchor="middle" font-family="monospace">.hidden {</text>
+                <text x="190" y="180" font-size="11" fill="#666" text-anchor="middle" font-family="monospace">opacity: 0;</text>
+                <text x="190" y="200" font-size="11" fill="#666" text-anchor="middle" font-family="monospace">}</text>
+                <line x1="200" y1="120" x2="280" y2="120" stroke="red" stroke-width="4"/>
+                
+                <rect x="320" y="80" width="180" height="140" fill="white" stroke="#213448" stroke-width="2" rx="5"/>
+                <text x="410" y="110" font-size="14" fill="#213448" text-anchor="middle" font-weight="bold">With Tool</text>
+                <circle cx="410" cy="160" r="30" fill="#94B4C1"/>
+                <text x="410" y="170" font-size="32" text-anchor="middle">✓</text>
+                <text x="410" y="210" font-size="12" fill="#213448" text-anchor="middle">No Code Needed!</text>
+                
+                <path d="M 290 150 L 310 150" stroke="#94B4C1" stroke-width="3" stroke-dasharray="5,5"/>
+            </svg>
+            <p>No, this tool does not require any coding knowledge. CSS and programming are usually used by developers, but this tool removes that complexity completely. Users do not need to understand how invisible text is created in the background.</p>
+            <p>The goal of the tool is to give results, not technical explanations.</p>
+        </div>
+
+        <div class="content-section">
+            <h2>Where Can Invisible Text Be Used?</h2>
+            <svg class="section-image" viewBox="0 0 600 300" xmlns="http://www.w3.org/2000/svg">
+                <rect width="600" height="300" fill="#EAE0CF"/>
+                <circle cx="300" cy="150" r="100" fill="none" stroke="#213448" stroke-width="3"/>
+                <circle cx="300" cy="150" r="70" fill="none" stroke="#94B4C1" stroke-width="2"/>
+                <circle cx="300" cy="150" r="40" fill="#213448"/>
+                <text x="300" y="155" font-size="16" fill="white" text-anchor="middle" font-weight="bold">Uses</text>
+                
+                <text x="150" y="80" font-size="13" fill="#213448" text-anchor="middle">Layout</text>
+                <text x="450" y="80" font-size="13" fill="#213448" text-anchor="middle">UI Testing</text>
+                <text x="150" y="220" font-size="13" fill="#213448" text-anchor="middle">Design</text>
+                <text x="450" y="220" font-size="13" fill="#213448" text-anchor="middle">Formatting</text>
+            </svg>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Purpose</th>
+                        <th>Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Layout Testing</strong></td>
+                        <td>Helps test spacing without visible content</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Hidden Text Areas</strong></td>
+                        <td>Keeps design clean and minimal</td>
+                    </tr>
+                    <tr>
+                        <td><strong>UI Experiments</strong></td>
+                        <td>Useful for interface testing</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Accessibility Tasks</strong></td>
+                        <td>Supports assistive technologies</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Formatting Needs</strong></td>
+                        <td>Creates invisible gaps in text</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="content-section">
+            <h2>Is Using Invisible Text Safe for SEO?</h2>
+            <svg class="section-image" viewBox="0 0 600 300" xmlns="http://www.w3.org/2000/svg">
+                <rect width="600" height="300" fill="#EAE0CF"/>
+                <circle cx="300" cy="150" r="80" fill="#94B4C1" opacity="0.3"/>
+                <path d="M 250 150 L 280 180 L 350 120" stroke="#213448" stroke-width="8" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+                <text x="300" y="240" font-size="20" fill="#213448" text-anchor="middle" font-weight="bold">SEO Safe ✓</text>
+                <rect x="150" y="50" width="100" height="30" fill="white" stroke="#213448" stroke-width="2" rx="5"/>
+                <text x="200" y="70" font-size="12" fill="#213448" text-anchor="middle">Ethical Use</text>
+                <rect x="350" y="50" width="100" height="30" fill="white" stroke="#213448" stroke-width="2" rx="5"/>
+                <text x="400" y="70" font-size="12" fill="#213448" text-anchor="middle">No Penalty</text>
+            </svg>
+            <p>Yes, using invisible text is safe as long as it is not used for manipulation. Search engines only take action when hidden text is used to trick rankings or hide keywords. A tool that helps users create invisible text for formatting or design purposes follows ethical practices.</p>
+            <div class="highlight-box">
+                <p style="margin: 0;"><strong>Note:</strong> It is important to clearly explain that invisible text should not be used for SEO shortcuts.</p>
+            </div>
+        </div>
+
+        <div class="content-section">
+            <h2>Difference Between Invisible Text and Hidden Text Spam</h2>
+            <svg class="section-image" viewBox="0 0 600 300" xmlns="http://www.w3.org/2000/svg">
+                <rect width="600" height="300" fill="#EAE0CF"/>
+                <rect x="50" y="50" width="230" height="200" fill="white" stroke="#94B4C1" stroke-width="3" rx="10"/>
+                <text x="165" y="80" font-size="16" fill="#213448" text-anchor="middle" font-weight="bold">✓ Good Practice</text>
+                <circle cx="165" cy="130" r="30" fill="#94B4C1"/>
+                <text x="165" y="140" font-size="24" text-anchor="middle">✓</text>
+                <text x="165" y="180" font-size="12" fill="#213448" text-anchor="middle">Design Purpose</text>
+                <text x="165" y="200" font-size="12" fill="#213448" text-anchor="middle">User Focused</text>
+                <text x="165" y="220" font-size="12" fill="#213448" text-anchor="middle">Safe & Ethical</text>
+                
+                <rect x="320" y="50" width="230" height="200" fill="white" stroke="red" stroke-width="3" rx="10"/>
+                <text x="435" y="80" font-size="16" fill="#721c24" text-anchor="middle" font-weight="bold">✗ Spam Practice</text>
+                <circle cx="435" cy="130" r="30" fill="red" opacity="0.8"/>
+                <text x="435" y="140" font-size="24" fill="white" text-anchor="middle">✗</text>
+                <text x="435" y="180" font-size="12" fill="#721c24" text-anchor="middle">SEO Manipulation</text>
+                <text x="435" y="200" font-size="12" fill="#721c24" text-anchor="middle">Deceptive</text>
+                <text x="435" y="220" font-size="12" fill="#721c24" text-anchor="middle">Risky & Penalized</text>
+            </svg>
+            <table class="comparison-table">
+                <thead>
+                    <tr>
+                        <th>Invisible Text</th>
+                        <th>Hidden Text Spam</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Used for design and formatting</td>
+                        <td>Used to manipulate rankings</td>
+                    </tr>
+                    <tr>
+                        <td>Focused on user needs</td>
+                        <td>Focused on search engines</td>
+                    </tr>
+                    <tr>
+                        <td>Safe when used correctly</td>
+                        <td>Risky and penalized</td>
+                    </tr>
+                    <tr>
+                        <td>Created via tools</td>
+                        <td>Created through deceptive methods</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="content-section">
+            <h2>Who Is This Tool For?</h2>
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">🎨</div>
+                    <h3>Designers</h3>
+                    <p>Perfect for layout testing and clean designs</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📚</div>
+                    <h3>Students</h3>
+                    <p>Great for learning and experiments</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">✍️</div>
+                    <h3>Content Creators</h3>
+                    <p>Ideal for formatting needs</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">👥</div>
+                    <h3>Beginners</h3>
+                    <p>Simple interface, no experience needed</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="content-section">
+            <h2>Why Choose an Online Text Invisible Tool?</h2>
+            <p>Online tools are quick and convenient. There is no need to download software or write code. The tool works instantly and helps avoid mistakes that may happen with manual methods. This makes it a reliable choice for users who want fast and accurate results.</p>
+        </div>
+
+        <div class="content-section">
+            <h2>Final Summary</h2>
+            <p>A Text Invisible Tool provides a simple way to hide text without technical effort. It is designed for ease of use, quick results, and clean output. When used responsibly, invisible text is a useful feature that supports design, formatting, and accessibility needs.</p>
+            <p style="font-weight: 600; font-size: 1.2em; text-align: center; color: #213448;">This tool is perfect for users who want a simple solution without unnecessary complexity.</p>
+        </div>
+
+        <div class="button-container">
+            <a href="https://docs.google.com/spreadsheets/d/e/2PACX-1vRum6hIY2wocsRP0hXxsOeGEqFUUgZPrLA-CYyldbElAhS4Gvn1s03oAcvGfLmFMOT9BK4zLHMSZ-M_/pubhtml" class="cta-button" target="_blank">explor it</a>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 Text Invisible Tool. All rights reserved.</p>
+            <p>Use responsibly and ethically for design and formatting purposes.</p>
+        </div>
+    </footer>
+
+    <div class="scroll-to-top" id="scrollTop">
+        ↑
+    </div>
